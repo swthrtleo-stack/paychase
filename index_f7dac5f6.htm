@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayChase - Get Paid Faster</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #F0F2F5;
+            color: #111827;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #FFFFFF;
+            border-bottom: 1px solid #E5E7EB;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #4F46E5;
+        }
+
+        .logo-subtitle {
+            font-size: 14px;
+            color: #6B7280;
+            margin-top: 2px;
+        }
+
+        /* Navigation */
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            background: #F3F4F6;
+            padding: 4px;
+            border-radius: 12px;
+        }
+
+        .nav-tab {
+            padding: 8px 20px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #6B7280;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-tab:hover {
+            color: #4F46E5;
+        }
+
+        .nav-tab.active {
+            background: #FFFFFF;
+            color: #4F46E5;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Main Content */
+        main {
+            padding: 30px 0 120px;
+        }
+
+        /* Hero Card */
+        .hero-card {
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+            padding: 32px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+            color: #FFFFFF;
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
+        }
+
+        .hero-card.green {
+            background: linear-gradient(135deg, #059669 0%, #10B981 100%);
+            box-shadow: 0 10px 30px rgba(5, 150, 105, 0.3);
+        }
+
+        .hero-label {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .hero-amount {
+            font-size: 42px;
+            font-weight: 800;
+            margin: 8px 0;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        /* Combined Banner */
+        .combined-banner {
+            background: #EEF2FF;
+            border: 1px solid #C7D2FE;
+            padding: 16px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .combined-banner:hover {
+            background: #E0E7FF;
+            transform: translateY(-2px);
+        }
+
+        .combined-banner-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .combined-banner-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            background: #4F46E5;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .combined-banner-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #4338CA;
+        }
+
+        .combined-banner-subtitle {
+            font-size: 13px;
+            color: #6366F1;
+            margin-top: 2px;
+        }
+
+        .combined-banner-arrow {
+            font-size: 20px;
+            color: #6366F1;
+            font-weight: 700;
+        }
+
+        /* Section Header */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .bulk-import-btn {
+            background: #EEF2FF;
+            color: #4F46E5;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .bulk-import-btn:hover {
+            background: #E0E7FF;
+        }
+
+        /* Cards */
+        .card {
+            background: #FFFFFF;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .card.paid {
+            border-left: 4px solid #059669;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .card-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 22px;
+            background: #EEF2FF;
+            color: #4F46E5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .avatar.paid {
+            background: #D1FAE5;
+            color: #059669;
+        }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .card-date {
+            font-size: 13px;
+            color: #6B7280;
+            margin-top: 4px;
+        }
+
+        .status-badge {
+            background: #FEF3C7;
+            color: #92400E;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .status-badge.paid {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+
+        .card-amount {
+            font-size: 22px;
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 16px;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 10px 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-remind {
+            background: #3B82F6;
+            color: #FFFFFF;
+        }
+
+        .btn-remind:hover {
+            background: #2563EB;
+        }
+
+        .btn-paid {
+            background: #059669;
+            color: #FFFFFF;
+        }
+
+        .btn-paid:hover {
+            background: #047857;
+        }
+
+        .btn-delete {
+            background: #FEE2E2;
+            color: #DC2626;
+        }
+
+        .btn-delete:hover {
+            background: #FECACA;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+
+        .empty-icon-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 40px;
+            background: #EEF2FF;
+            color: #4F46E5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0 auto 16px;
+        }
+
+        .empty-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .empty-text {
+            font-size: 15px;
+            color: #6B7280;
+            margin-bottom: 24px;
+        }
+
+        .action-row {
+            display: flex;
+            gap: 12px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .btn-primary {
+            flex: 1;
+            background: #4F46E5;
+            color: #FFFFFF;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #4338CA;
+        }
+
+        .btn-secondary {
+            flex: 1;
+            background: #FFFFFF;
+            color: #4F46E5;
+            padding: 14px;
+            border: 2px solid #4F46E5;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: #EEF2FF;
+        }
+
+        /* FAB */
+        .fab {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            background: #4F46E5;
+            color: #FFFFFF;
+            border: none;
+            font-size: 30px;
+            font-weight: 300;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+            transition: all 0.2s;
+            z-index: 50;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.5);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #FFFFFF;
+            width: 100%;
+            max-width: 500px;
+            padding: 28px;
+            border-radius: 20px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .input {
+            width: 100%;
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 16px;
+            color: #111827;
+            margin-bottom: 14px;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: #4F46E5;
+        }
+
+        .date-chips-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #6B7280;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .date-chips-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .date-chip {
+            flex: 1;
+            background: #EEF2FF;
+            color: #4F46E5;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .date-chip:hover {
+            background: #E0E7FF;
+        }
+
+        .bulk-input {
+            height: 120px;
+            resize: vertical;
+            font-family: 'Courier New', monospace;
+        }
+
+        .upload-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #374151;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .file-upload-button {
+            background: #F9FAFB;
+            border: 2px dashed #C7D2FE;
+            padding: 24px;
+            border-radius: 16px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 16px;
+            transition: all 0.2s;
+        }
+
+        .file-upload-button:hover {
+            background: #EEF2FF;
+            border-color: #4F46E5;
+        }
+
+        .file-upload-text {
+            font-size: 15px;
+            font-weight: 700;
+            color: #4F46E5;
+            margin-bottom: 4px;
+        }
+
+        .file-upload-hint {
+            font-size: 12px;
+            color: #9CA3AF;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 16px 0;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: #E5E7EB;
+        }
+
+        .divider-text {
+            padding: 0 16px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #9CA3AF;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .btn-cancel {
+            flex: 1;
+            background: #F3F4F6;
+            color: #6B7280;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-save {
+            flex: 1;
+            background: #4F46E5;
+            color: #FFFFFF;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-save:hover {
+            background: #4338CA;
+        }
+
+        /* Preview Items */
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .preview-count {
+            background: #059669;
+            color: #FFFFFF;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .preview-warning {
+            background: #FEF3C7;
+            color: #92400E;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .preview-list {
+            max-height: 350px;
+            overflow-y: auto;
+            margin-bottom: 16px;
+        }
+
+        .preview-item {
+            background: #F9FAFB;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border-left: 4px solid #4F46E5;
+        }
+
+        .preview-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .preview-item-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .preview-item-amount {
+            font-size: 18px;
+            font-weight: 800;
+            color: #4F46E5;
+        }
+
+        .preview-item-details {
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        /* Grouped Cards */
+        .grouped-subtitle {
+            font-size: 14px;
+            color: #6B7280;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .grouped-card {
+            background: #F9FAFB;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 16px;
+        }
+
+        .grouped-card.multi {
+            background: #FFFFFF;
+            border-left: 4px solid #4F46E5;
+        }
+
+        .grouped-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .grouped-name {
+            font-size: 17px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .grouped-phone {
+            font-size: 13px;
+            color: #6B7280;
+            margin-top: 2px;
+        }
+
+        .grouped-count-badge {
+            background: #F3F4F6;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #6B7280;
+        }
+
+        .grouped-count-badge.multi {
+            background: #EEF2FF;
+        }
+
+        .grouped-invoice-list {
+            background: #F3F4F6;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .grouped-invoice-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .grouped-invoice-item:last-child {
+            border-bottom: none;
+        }
+
+        .grouped-invoice-amount {
+            font-size: 14px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .grouped-invoice-date {
+            font-size: 13px;
+            color: #6B7280;
+        }
+
+        .grouped-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-top: 8px;
+        }
+
+        .grouped-total-label {
+            font-size: 15px;
+            font-weight: 700;
+            color: #374151;
+        }
+
+        .grouped-total-amount {
+            font-size: 20px;
+            font-weight: 800;
+            color: #4F46E5;
+        }
+
+        .btn-grouped-remind {
+            width: 100%;
+            background: #3B82F6;
+            color: #FFFFFF;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-grouped-remind:hover {
+            background: #2563EB;
+        }
+
+        .btn-grouped-remind:disabled {
+            background: #E5E7EB;
+            cursor: not-allowed;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-amount {
+                font-size: 32px;
+            }
+
+            .action-row {
+                flex-direction: column;
+            }
+
+            .card-actions {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <div class="logo">PayChase</div>
+                    <div class="logo-subtitle">Get paid faster</div>
+                </div>
+                <div class="nav-tabs">
+                    <button class="nav-tab active" onclick="switchView('home')">Home</button>
+                    <button class="nav-tab" onclick="switchView('reports')">Reports</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div id="homeView">
+                <div class="hero-card">
+                    <div class="hero-label">Total Outstanding</div>
+                    <div class="hero-amount" id="totalOutstanding">Rs. 0</div>
+                    <div class="hero-badge" id="activeCount">0 Active Invoices</div>
+                </div>
+
+                <div id="combinedBanner" style="display: none;" class="combined-banner" onclick="showGroupedModal()">
+                    <div class="combined-banner-left">
+                        <div class="combined-banner-icon">+</div>
+                        <div>
+                            <div class="combined-banner-title">Combined Reminders</div>
+                            <div class="combined-banner-subtitle" id="combinedCount">0 customer(s) with multiple invoices</div>
+                        </div>
+                    </div>
+                    <div class="combined-banner-arrow">></div>
+                </div>
+
+                <div class="section-header">
+                    <div class="section-title">Pending Payments</div>
+                    <button id="bulkImportBtn" class="bulk-import-btn" style="display: none;" onclick="showBulkModal()">Bulk Import</button>
+                </div>
+
+                <div id="invoiceList"></div>
+            </div>
+
+            <div id="reportsView" style="display: none;">
+                <div class="hero-card green">
+                    <div class="hero-label">Total Collected</div>
+                    <div class="hero-amount" id="totalCollected">Rs. 0</div>
+                    <div class="hero-badge" id="paidCount">0 Invoices Paid</div>
+                </div>
+
+                <div class="section-title">Payment History</div>
+                <div id="paidList"></div>
+            </div>
+        </div>
+    </main>
+
+    <button class="fab" onclick="showAddModal()">+</button>
+
+    <!-- Add Invoice Modal -->
+    <div id="addModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-title">Add Invoice</div>
+            <input type="text" id="clientName" class="input" placeholder="Client Name">
+            <input type="text" id="clientPhone" class="input" placeholder="Phone (e.g., 919876543210)">
+            <input type="number" id="amount" class="input" placeholder="Amount (Rs.)">
+            <div class="date-chips-label">Quick Select Due Date:</div>
+            <div class="date-chips-row">
+                <button class="date-chip" onclick="setDueDate(1)">Tomorrow</button>
+                <button class="date-chip" onclick="setDueDate(15)">Net 15</button>
+                <button class="date-chip" onclick="setDueDate(30)">Net 30</button>
+            </div>
+            <input type="text" id="dueDate" class="input" placeholder="Or type custom due date...">
+            <div class="modal-buttons">
+                <button class="btn-cancel" onclick="closeModal('addModal')">Cancel</button>
+                <button class="btn-save" onclick="addInvoice()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk Import Modal -->
+    <div id="bulkModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-title">Bulk Import</div>
+            <div class="upload-label">Option 1: Upload CSV File</div>
+            <div class="file-upload-button" onclick="document.getElementById('fileInput').click()">
+                <div class="file-upload-text">Choose CSV File</div>
+                <div class="file-upload-hint">Excel: File > Save As > CSV</div>
+            </div>
+            <input type="file" id="fileInput" accept=".csv,.txt" style="display: none;" onchange="handleFileUpload(event)">
+            <div class="divider">
+                <div class="divider-line"></div>
+                <div class="divider-text">OR</div>
+                <div class="divider-line"></div>
+            </div>
+            <div class="upload-label">Option 2: Paste Data</div>
+            <textarea id="bulkText" class="input bulk-input" placeholder="Paste data here..."></textarea>
+            <div class="modal-buttons">
+                <button class="btn-cancel" onclick="closeModal('bulkModal')">Cancel</button>
+                <button class="btn-save" onclick="previewImport()">Preview Import</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div id="previewModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-title">Preview Import</div>
+            <div class="preview-header">
+                <div class="preview-count" id="previewCount">0 invoice(s)</div>
+                <div class="preview-warning" id="previewWarning" style="display: none;">0 error(s)</div>
+            </div>
+            <div class="preview-list" id="previewList"></div>
+            <div class="modal-buttons">
+                <button class="btn-cancel" onclick="closeModal('previewModal')">Cancel</button>
+                <button class="btn-save" onclick="confirmImport()">Confirm Import</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grouped Reminders Modal -->
+    <div id="groupedModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-title">Combined Reminders</div>
+            <div class="grouped-subtitle">Send all invoices for each customer in one message</div>
+            <div class="preview-list" id="groupedList"></div>
+            <div class="modal-buttons">
+                <button class="btn-cancel" onclick="closeModal('groupedModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let invoices = JSON.parse(localStorage.getItem('paychase_invoices') || '[]');
+        let currentView = 'home';
+        let parsedInvoices = [];
+        let parseErrors = [];
+
+        function saveData() {
+            localStorage.setItem('paychase_invoices', JSON.stringify(invoices));
+            render();
+        }
+
+        function getFutureDate(days) {
+            const date = new Date();
+            date.setDate(date.getDate() + days);
+            return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        }
+
+        function setDueDate(days) {
+            document.getElementById('dueDate').value = getFutureDate(days);
+        }
+
+        function switchView(view) {
+            currentView = view;
+            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (view === 'home') {
+                document.getElementById('homeView').style.display = 'block';
+                document.getElementById('reportsView').style.display = 'none';
+            } else {
+                document.getElementById('homeView').style.display = 'none';
+                document.getElementById('reportsView').style.display = 'block';
+            }
+            render();
+        }
+
+        function showAddModal() {
+            document.getElementById('addModal').classList.add('active');
+        }
+
+        function showBulkModal() {
+            document.getElementById('bulkModal').classList.add('active');
+        }
+
+        function showGroupedModal() {
+            renderGroupedModal();
+            document.getElementById('groupedModal').classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        function addInvoice() {
+            const clientName = document.getElementById('clientName').value.trim();
+            const clientPhone = document.getElementById('clientPhone').value.trim();
+            const amount = parseFloat(document.getElementById('amount').value);
+            const dueDate = document.getElementById('dueDate').value.trim();
+
+            if (!clientName || !amount || !dueDate) {
+                alert('Please fill in client name, amount, and due date');
+                return;
+            }
+
+            invoices.push({
+                id: Date.now().toString(),
+                clientName,
+                clientPhone,
+                amount,
+                dueDate,
+                status: 'Pending'
+            });
+
+            saveData();
+            closeModal('addModal');
+            document.getElementById('clientName').value = '';
+            document.getElementById('clientPhone').value = '';
+            document.getElementById('amount').value = '';
+            document.getElementById('dueDate').value = '';
+            alert('Invoice added successfully!');
+        }
+
+        function markAsPaid(id) {
+            invoices = invoices.map(inv => inv.id === id ? { ...inv, status: 'Paid' } : inv);
+            saveData();
+        }
+
+        function deleteInvoice(id) {
+            if (confirm('Are you sure you want to delete this invoice?')) {
+                invoices = invoices.filter(inv => inv.id !== id);
+                saveData();
+            }
+        }
+
+        function sendReminder(invoice) {
+            if (!invoice.clientPhone) {
+                alert('Please add a phone number first');
+                return;
+            }
+            const message = `Hi ${invoice.clientName}, reminder: Rs. ${invoice.amount.toLocaleString()} due on ${invoice.dueDate}. Thanks!`;
+            const whatsappUrl = `https://wa.me/${invoice.clientPhone}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function sendCombinedReminder(group) {
+            if (!group.clientPhone) {
+                alert('No phone number for ' + group.clientName);
+                return;
+            }
+            const totalAmount = group.invoices.reduce((sum, inv) => sum + inv.amount, 0);
+            const count = group.invoices.length;
+            let message = `Hi ${group.clientName},\n\n`;
+            
+            if (count === 1) {
+                const inv = group.invoices[0];
+                message += `Reminder: Rs. ${inv.amount.toLocaleString()} due on ${inv.dueDate}\n\n`;
+            } else {
+                message += `You have ${count} pending invoices:\n\n`;
+                group.invoices.forEach((inv, index) => {
+                    message += `${index + 1}. Rs. ${inv.amount.toLocaleString()} (Due: ${inv.dueDate})\n`;
+                });
+                message += `\nTotal: Rs. ${totalAmount.toLocaleString()}\n\n`;
+            }
+            message += 'Please process at your earliest convenience. Thanks!';
+            
+            const whatsappUrl = `https://wa.me/${group.clientPhone}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const text = e.target.result;
+                document.getElementById('bulkText').value = text;
+                previewImport();
+            };
+            reader.readAsText(file);
+        }
+
+        function parseBulkData(text) {
+            if (!text || !text.trim()) return { invoices: [], errors: [] };
+            
+            const lines = text.trim().split('\n');
+            const parsed = [];
+            const errors = [];
+            const startIndex = (lines[0].toLowerCase().includes('name') || lines[0].toLowerCase().includes('client')) ? 1 : 0;
+
+            for (let i = startIndex; i < lines.length; i++) {
+                const line = lines[i];
+                if (!line.trim()) continue;
+
+                let parts;
+                if (line.includes('\t')) {
+                    parts = line.split('\t');
+                } else if (line.includes(',')) {
+                    parts = line.split(',');
+                } else {
+                    parts = line.split(/\s{2,}/);
+                }
+
+                parts = parts.map(p => p.trim()).filter(p => p);
+
+                if (parts.length >= 3) {
+                    const name = parts[0];
+                    const phone = parts[1] || '';
+                    const amountStr = parts[2].replace(/[^0-9.]/g, '');
+                    const amt = parseFloat(amountStr);
+                    const date = parts[3] || getFutureDate(15);
+
+                    if (name && !isNaN(amt) && amt > 0) {
+                        parsed.push({
+                            id: Date.now().toString() + Math.random().toString(36) + i,
+                            clientName: name,
+                            clientPhone: phone,
+                            amount: amt,
+                            dueDate: date,
+                            status: 'Pending'
+                        });
+                    } else {
+                        errors.push('Row ' + (i + 1));
+                    }
+                } else {
+                    errors.push('Row ' + (i + 1));
+                }
+            }
+
+            return { invoices: parsed, errors };
+        }
+
+        function previewImport() {
+            const bulkText = document.getElementById('bulkText').value;
+            const result = parseBulkData(bulkText);
+
+            if (result.invoices.length === 0) {
+                alert('Could not parse any invoices.\n\nExpected: Name, Phone, Amount, Date');
+                return;
+            }
+
+            parsedInvoices = result.invoices;
+            parseErrors = result.errors;
+
+            document.getElementById('previewCount').textContent = parsedInvoices.length + ' invoice(s)';
+            
+            if (parseErrors.length > 0) {
+                document.getElementById('previewWarning').textContent = parseErrors.length + ' error(s)';
+                document.getElementById('previewWarning').style.display = 'inline-block';
+            } else {
+                document.getElementById('previewWarning').style.display = 'none';
+            }
+
+            const previewList = document.getElementById('previewList');
+            previewList.innerHTML = parsedInvoices.map(inv => `
+                <div class="preview-item">
+                    <div class="preview-item-header">
+                        <div class="preview-item-name">${inv.clientName}</div>
+                        <div class="preview-item-amount">Rs. ${inv.amount.toLocaleString()}</div>
+                    </div>
+                    <div class="preview-item-details">Phone: ${inv.clientPhone || 'N/A'} | Due: ${inv.dueDate}</div>
+                </div>
+            `).join('');
+
+            closeModal('bulkModal');
+            document.getElementById('previewModal').classList.add('active');
+        }
+
+        function confirmImport() {
+            invoices = [...invoices, ...parsedInvoices];
+            saveData();
+            
+            let message = 'Imported ' + parsedInvoices.length + ' invoice(s)!';
+            if (parseErrors.length > 0) {
+                message += '\n' + parseErrors.length + ' row(s) skipped.';
+            }
+            
+            alert(message);
+            parsedInvoices = [];
+            parseErrors = [];
+            document.getElementById('bulkText').value = '';
+            closeModal('previewModal');
+        }
+
+        function getGroupedByCustomer() {
+            const activeInvs = invoices.filter(inv => inv.status !== 'Paid');
+            const groups = {};
+            
+            activeInvs.forEach(inv => {
+                const key = inv.clientName;
+                if (!groups[key]) {
+                    groups[key] = { clientName: inv.clientName, clientPhone: inv.clientPhone, invoices: [] };
+                }
+                groups[key].invoices.push(inv);
+                if (!groups[key].clientPhone && inv.clientPhone) {
+                    groups[key].clientPhone = inv.clientPhone;
+                }
+            });
+            
+            return Object.values(groups).filter(g => g.invoices.length > 0);
+        }
+
+        function renderGroupedModal() {
+            const groupedCustomers = getGroupedByCustomer();
+            const groupedList = document.getElementById('groupedList');
+            
+            groupedList.innerHTML = groupedCustomers.map(group => {
+                const totalAmount = group.invoices.reduce((sum, inv) => sum + inv.amount, 0);
+                const isMulti = group.invoices.length > 1;
+                
+                return `
+                    <div class="grouped-card ${isMulti ? 'multi' : ''}">
+                        <div class="grouped-card-header">
+                            <div>
+                                <div class="grouped-name">${group.clientName}</div>
+                                <div class="grouped-phone">${group.clientPhone || 'No phone'}</div>
+                            </div>
+                            <div class="grouped-count-badge ${isMulti ? 'multi' : ''}">${group.invoices.length} invoice(s)</div>
+                        </div>
+                        <div class="grouped-invoice-list">
+                            ${group.invoices.map(inv => `
+                                <div class="grouped-invoice-item">
+                                    <div class="grouped-invoice-amount">Rs. ${inv.amount.toLocaleString()}</div>
+                                    <div class="grouped-invoice-date">Due: ${inv.dueDate}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="grouped-total">
+                            <div class="grouped-total-label">Total:</div>
+                            <div class="grouped-total-amount">Rs. ${totalAmount.toLocaleString()}</div>
+                        </div>
+                        <button class="btn-grouped-remind" ${!group.clientPhone ? 'disabled' : ''} onclick="sendCombinedReminder(${JSON.stringify(group).replace(/"/g, '&quot;')})">
+                            Send Combined Reminder
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function render() {
+            const activeInvoices = invoices.filter(inv => inv.status !== 'Paid');
+            const paidInvoices = invoices.filter(inv => inv.status === 'Paid');
+            const totalOutstanding = activeInvoices.reduce((sum, inv) => sum + inv.amount, 0);
+            const totalCollected = paidInvoices.reduce((sum, inv) => sum + inv.amount, 0);
+            const groupedCustomers = getGroupedByCustomer();
+            const multiInvoiceCustomers = groupedCustomers.filter(g => g.invoices.length > 1);
+
+            // Update hero cards
+            document.getElementById('totalOutstanding').textContent = 'Rs. ' + totalOutstanding.toLocaleString();
+            document.getElementById('activeCount').textContent = activeInvoices.length + ' Active Invoice' + (activeInvoices.length !== 1 ? 's' : '');
+            document.getElementById('totalCollected').textContent = 'Rs. ' + totalCollected.toLocaleString();
+            document.getElementById('paidCount').textContent = paidInvoices.length + ' Invoice' + (paidInvoices.length !== 1 ? 's' : '') + ' Paid';
+
+            // Show/hide bulk import button
+            document.getElementById('bulkImportBtn').style.display = activeInvoices.length > 0 ? 'block' : 'none';
+
+            // Show/hide combined banner
+            if (multiInvoiceCustomers.length > 0) {
+                document.getElementById('combinedBanner').style.display = 'flex';
+                document.getElementById('combinedCount').textContent = multiInvoiceCustomers.length + ' customer(s) with multiple invoices';
+            } else {
+                document.getElementById('combinedBanner').style.display = 'none';
+            }
+
+            // Render invoice list
+            const invoiceList = document.getElementById('invoiceList');
+            if (activeInvoices.length === 0) {
+                invoiceList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon-circle">+</div>
+                        <div class="empty-title">No pending invoices</div>
+                        <div class="empty-text">Add your first invoice to get started</div>
+                        <div class="action-row">
+                            <button class="btn-primary" onclick="showAddModal()">+ Add Single</button>
+                            <button class="btn-secondary" onclick="showBulkModal()">Upload File</button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                invoiceList.innerHTML = activeInvoices.map(item => `
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-left">
+                                <div class="avatar">${item.clientName.charAt(0).toUpperCase()}</div>
+                                <div>
+                                    <div class="card-title">${item.clientName}</div>
+                                    <div class="card-date">Due: ${item.dueDate}</div>
+                                </div>
+                            </div>
+                            <div class="status-badge">Pending</div>
+                        </div>
+                        <div class="card-amount">Rs. ${item.amount.toLocaleString()}</div>
+                        <div class="card-actions">
+                            <button class="btn btn-remind" onclick="sendReminder(${JSON.stringify(item).replace(/"/g, '&quot;')})">Remind</button>
+                            <button class="btn btn-paid" onclick="markAsPaid('${item.id}')">Paid</button>
+                            <button class="btn btn-delete" onclick="deleteInvoice('${item.id}')">X</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Render paid list
+            const paidList = document.getElementById('paidList');
+            if (paidInvoices.length === 0) {
+                paidList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-title">No payments yet</div>
+                        <div class="empty-text">Mark invoices as Paid to see them here</div>
+                    </div>
+                `;
+            } else {
+                paidList.innerHTML = paidInvoices.map(item => `
+                    <div class="card paid">
+                        <div class="card-header">
+                            <div class="card-left">
+                                <div class="avatar paid">✓</div>
+                                <div>
+                                    <div class="card-title">${item.clientName}</div>
+                                    <div class="card-date">Due: ${item.dueDate}</div>
+                                </div>
+                            </div>
+                            <div class="status-badge paid">Paid</div>
+                        </div>
+                        <div class="card-amount">Rs. ${item.amount.toLocaleString()}</div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Initial render
+        render();
+    </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"75124c326cb447fe934cde04713ae013","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
